@@ -9,12 +9,11 @@
             <TableView Intent="Settings">
                 <TableRoot>
                     <TableSection Title="Accessories">
-                        <SwitchCell Text="{Binding Text_Abs_Break}" On="{Binding HasItAbsBreak,Mode=TwoWay}"/>
-                        <SwitchCell Text="{Binding Text_Air_Conditioning}" />
-                        <SwitchCell Text="{Binding Text_Mp3_Player}" />
-                        <TextCell Text="{Binding Text_Total_Value,Mode=TwoWay}"/>
-                    </TableSection>
-                    
+                        <SwitchCell Text="{Binding Text_Abs_Break}" On="{Binding HasVehicleAbsBreak,Mode=TwoWay}"/>
+                        <SwitchCell Text="{Binding Text_Air_Conditioning}" On="{Binding HasVehicleAirConditioning,Mode=TwoWay}" />
+                        <SwitchCell Text="{Binding Text_Mp3_Player}" On="{Binding HasVehicleMp3Player,Mode=TwoWay}"/>
+                        <TextCell Text="{Binding Text_Total_Value}"/>
+                    </TableSection>                    
                 </TableRoot>
             </TableView>
             <Button x:Name="buttonNext" Text="Next" Clicked="buttonNext_Clicked" VerticalOptions="End"/>

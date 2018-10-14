@@ -4,41 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestDrive.models;
+using TestDrive.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TestDrive.Views
 {
-    //[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SchedulingView : ContentPage
     {
-        public Vehicle Vehicle { get; set; }
-        public string Name { get; set; }
-        public string Telephone { get; set; }
-        public string Email { get; set; }
-        public TimeSpan SchedulingTime { get; set; }
-
-        DateTime _dateTime;
-        public DateTime SchedulingDate { get { return _dateTime; } set { _dateTime = value; } }
-
+        public SchedulinViewModel ViewModel { get; set; }
 
         public SchedulingView(Vehicle vehicle)
         {
             InitializeComponent();
-            _dateTime = DateTime.Today;
-            Vehicle = vehicle;
-            BindingContext = this;
+            ViewModel = new SchedulinViewModel(vehicle);
+            BindingContext = ViewModel;
         }
 
         private void buttonScheduling_Clicked(object sender, EventArgs e)
         {
             DisplayAlert("Scheduling", string.Format(
-@"Name: {0}
-Phone: {1}
-E-mail: {2}
-Scheduling Date: {3}
-Scheduling Time:{4}",
-Name, Telephone, Email, SchedulingDate.ToString("dd/MM/yyy"), SchedulingTime), "OK", "Ok");
+@"Vehivle: {0}
+Name: {1}
+Phone: {2}
+E-mail: {3}
+Scheduling Date: {4}
+Scheduling Time:{5}",
+ViewModel.Scheduling.Vehicle.Name, ViewModel.Scheduling.Name,
+ViewModel.Scheduling.Telephone,
+ViewModel.Scheduling.Email,
+ViewModel.Scheduling.SchedulingDate.ToString("dd/MM/yyy"),
+ViewModel.Scheduling.SchedulingTime), "OK");
         }
     }
 }

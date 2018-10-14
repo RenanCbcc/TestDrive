@@ -2,28 +2,28 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestDrive.Views.SchedulingView"
-             Title="{Binding Vehicle.Name}">
+             Title="{Binding Scheduling.Vehicle.Name}">
 
     <ContentPage.Content>
         <StackLayout>
             <TableView>
                 <TableRoot>
                     <TableSection Title="Your informations">
-                        <EntryCell Label="Name:" Text="{Binding Name}"/>
-                        <EntryCell Label="Telephone:" Keyboard="Telephone" Text="{Binding Telephone}"/>
-                        <EntryCell Label="E-mail:" Keyboard="Email" Text="{Binding Email}"/>
+                        <EntryCell Label="Name:" Text="{Binding Scheduling.Name}"/>
+                        <EntryCell Label="Telephone:" Keyboard="Telephone" Text="{Binding Scheduling.Telephone}"/>
+                        <EntryCell Label="E-mail:" Keyboard="Email" Text="{Binding Scheduling.Email}"/>
                     </TableSection>
                     <TableSection Title="Scheduling">
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Margin="12,0,0,0">
                                 <Label Text="Date:"></Label>
-                                <DatePicker Date="{Binding SchedulingDate}" ></DatePicker>
+                                <DatePicker Date="{Binding Scheduling.SchedulingDate}" ></DatePicker>
                             </StackLayout>
                         </ViewCell>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Margin="12,0,0,0">
                                 <Label Text="Time:"></Label>
-                                <TimePicker Time="{Binding TimeScheduling}"></TimePicker>
+                                <TimePicker Time="{Binding Scheduling.SchedulingTime}"></TimePicker>
                             </StackLayout>
                         </ViewCell>
                     </TableSection>
