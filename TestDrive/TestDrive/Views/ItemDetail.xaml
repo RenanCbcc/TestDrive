@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestDrive.Views.ItemDetail"
+             Title="{Binding VEHICLE.Name}">
+
+    <ContentPage.Content>
+        <StackLayout Padding="25">
+            <TableView Intent="Settings">
+                <TableRoot>
+                    <TableSection Title="Accessories">
+                        <SwitchCell Text="{Binding Text_Abs_Break}" On="{Binding HasItAbsBreak,Mode=TwoWay}"/>
+                        <SwitchCell Text="{Binding Text_Air_Conditioning}" />
+                        <SwitchCell Text="{Binding Text_Mp3_Player}" />
+                        <TextCell Text="{Binding Text_Total_Value,Mode=TwoWay}"/>
+                    </TableSection>
+                    
+                </TableRoot>
+            </TableView>
+            <Button x:Name="buttonNext" Text="Next" Clicked="buttonNext_Clicked" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
