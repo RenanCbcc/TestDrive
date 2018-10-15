@@ -22,20 +22,31 @@ namespace TestDrive.Views
             BindingContext = ViewModel;
         }
 
-        private void buttonScheduling_Clicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            DisplayAlert("Scheduling", string.Format(
-@"Vehivle: {0}
-Name: {1}
-Phone: {2}
-E-mail: {3}
-Scheduling Date: {4}
-Scheduling Time:{5}",
-ViewModel.Scheduling.Vehicle.Name, ViewModel.Scheduling.Name,
-ViewModel.Scheduling.Telephone,
-ViewModel.Scheduling.Email,
-ViewModel.Scheduling.SchedulingDate.ToString("dd/MM/yyy"),
-ViewModel.Scheduling.SchedulingTime), "OK");
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Scheduling>(this, "Scheduling", (message) =>
+            {
+                DisplayAlert("Scheduling", string.Format(
+                    @"Vehivle: {0}
+                    Name: {1}
+                    Phone: {2}
+                    E-mail: {3}
+                    Scheduling Date: {4}
+                    Scheduling Time:{5}",
+                    message.Vehicle.Name, 
+                    message.Name,
+                    message.Telephone,
+                    message.Email,
+                    message.SchedulingDate.ToString("dd/MM/yyy"),
+                    message.SchedulingTime), "OK");
+            });
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Scheduling>(this, "Scheduling");
         }
     }
 }

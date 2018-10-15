@@ -29,7 +29,7 @@
                     </TableSection>
                 </TableRoot>
             </TableView>
-            <Button x:Name="buttonScheduling" Text="Schedule" Clicked="buttonScheduling_Clicked" ></Button>
+            <Button x:Name="buttonScheduling" Text="Schedule" Command="{Binding ScheduleCommand}" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

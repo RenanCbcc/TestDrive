@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TestDrive.Views.ItemDetail"
-             Title="{Binding VEHICLE.Name}">
+             x:Class="TestDrive.Views.ItemDetailView"
+             Title="{Binding Vehicle.Name}">
 
     <ContentPage.Content>
         <StackLayout Padding="25">
@@ -16,7 +16,8 @@
                     </TableSection>                    
                 </TableRoot>
             </TableView>
-            <Button x:Name="buttonNext" Text="Next" Clicked="buttonNext_Clicked" VerticalOptions="End"/>
+            <Button x:Name="buttonNext" Text="Next" Command="{Binding NextCommand}" VerticalOptions="End"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

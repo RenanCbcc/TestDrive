@@ -21,7 +21,7 @@ namespace TestDrive.Views
             base.OnAppearing();
             MessagingCenter.Subscribe<Vehicle>(this, "SelectedVehicle", (message) =>
             {
-                Navigation.PushAsync(new ItemDetail(message));
+                Navigation.PushAsync(new ItemDetailView(message));
             }
             );
         }

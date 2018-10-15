@@ -8,18 +8,18 @@ namespace TestDrive.ViewModels
 {
     public class ListingViewModel
     {
-        public List<Vehicle> Vehicles { get; }
+        public List<Vehicle> Vehicles { get; set; }
 
-        private Vehicle _vehicle;
+        private Vehicle _selectedVehicle;
         public Vehicle SelectedVehicle
         {
-            get { return _vehicle; }
+            get { return _selectedVehicle; }
             set
             {
-                _vehicle = value;
-                if (_vehicle != null)
+                _selectedVehicle = value;
+                if (_selectedVehicle != null)
                 {
-                    MessagingCenter.Send(_vehicle, "SelectedVehicle");
+                    MessagingCenter.Send(_selectedVehicle, "SelectedVehicle");
                 }
             }
         }
