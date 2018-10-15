@@ -10,7 +10,7 @@
     </ContentPage.BindingContext>
 
     <ListView x:Name="listviewVehicles" ItemsSource="{Binding Vehicles}" Margin="25"
-              ItemTapped="listviewVehicles_ItemTapped">
+              SelectedItem="{Binding SelectedVehicle}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
