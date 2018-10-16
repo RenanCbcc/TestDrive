@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:TestDrive.ViewModels"
              Title="Test Drive"
              x:Class="TestDrive.Views.ListingView">
-    
+
     <!--<ContentPage.BindingContext>
         <vm:ListingViewModel/>
     </ContentPage.BindingContext>
@@ -13,23 +13,22 @@
     <StackLayout Margin="25">
         <ActivityIndicator IsRunning="{Binding Wait}" IsVisible="{Binding Wait}">
 
-        </ActivityIndicator> 
-    
-    <ListView x:Name="listviewVehicles" ItemsSource="{Binding Vehicles}" SelectedItem="{Binding SelectedVehicle}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <ViewCell.View>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Name}" VerticalTextAlignment="Center"/>
-                            <Label Text=" - " VerticalTextAlignment="Center"/>
-                            <Label Text="{Binding FormatedPrice}" VerticalTextAlignment="Center" />
-                        </StackLayout>
-                    </ViewCell.View>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
+        </ActivityIndicator>
 
-    </ListView>
+        <ListView x:Name="listviewVehicles" ItemsSource="{Binding Vehicles}" SelectedItem="{Binding SelectedVehicle}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}" VerticalTextAlignment="Center"/>
+                                <Label Text=" - " VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding FormatedPrice}" VerticalTextAlignment="Center" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 </ContentPage>

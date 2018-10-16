@@ -42,6 +42,7 @@ namespace TestDrive.ViewModels
                 Vehicle.HasItAirContioning = value;
                 //Notify th code behind that the fild total_Value is being modified;
                 OnPropertyChanged(nameof(Text_Total_Value));
+
             }
         }
 

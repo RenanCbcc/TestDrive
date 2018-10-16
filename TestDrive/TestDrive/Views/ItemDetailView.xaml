@@ -13,11 +13,10 @@
                         <SwitchCell Text="{Binding Text_Air_Conditioning}" On="{Binding HasVehicleAirConditioning,Mode=TwoWay}" />
                         <SwitchCell Text="{Binding Text_Mp3_Player}" On="{Binding HasVehicleMp3Player,Mode=TwoWay}"/>
                         <TextCell Text="{Binding Text_Total_Value}"/>
-                    </TableSection>                    
+                    </TableSection>
                 </TableRoot>
             </TableView>
             <Button x:Name="buttonNext" Text="Next" Command="{Binding NextCommand}" VerticalOptions="End"/>
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
