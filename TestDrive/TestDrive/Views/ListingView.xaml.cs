@@ -4,19 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestDrive.models;
+using TestDrive.ViewModels;
 using Xamarin.Forms;
 
 namespace TestDrive.Views
 {
     public partial class ListingView : ContentPage
     {
-
+        public ListingViewModel ViewModel { get; set; }
         public ListingView()
         {
             InitializeComponent();
+            ViewModel = new ListingViewModel();
+            this.BindingContext = ViewModel;
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
             MessagingCenter.Subscribe<Vehicle>(this, "SelectedVehicle", (message) =>
@@ -24,6 +27,7 @@ namespace TestDrive.Views
                 Navigation.PushAsync(new ItemDetailView(message));
             }
             );
+            await ViewModel.getVehicles();
         }
 
         protected override void OnDisappearing()

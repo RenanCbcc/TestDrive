@@ -6,8 +6,8 @@ namespace TestDrive.models
 {
     public class Vehicle
     {
-        private string _name;
-        private decimal _price;
+        private string name;
+        private int price;
         public const int ABS_BREAK = 400;
         public const int AIR_CONDITIONING = 300;
         public const int MP3_PLAYER = 200;
@@ -16,26 +16,26 @@ namespace TestDrive.models
         public bool HasItAirContioning { get; set; }
         public bool HasItMp3Player { get; set; }
 
-        public Vehicle(string name, decimal value)
+        public Vehicle(string name, int price)
         {
-            this._name = name;
-            this._price = value;
+            this.name = name;
+            this.price = price;
         }
 
         public string Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return name; }
+            set { name = value; }
         }
 
-        public decimal Price
+        public int Price
         {
-            get { return _price; }
-            set { _price = value; }
+            get { return price; }
+            set { price = value; }
         }
 
         public string FormatedPrice { get {
-                return string.Format("R$ {0} ", _price);
+                return string.Format("R$ {0} ", price);
             }
         }
 
