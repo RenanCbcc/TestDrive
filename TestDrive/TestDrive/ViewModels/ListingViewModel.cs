@@ -1,20 +1,19 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using TestDrive.models;
 using Xamarin.Forms;
 
 namespace TestDrive.ViewModels
 {
-    public class ListingViewModel
+    public class ListingViewModel: ViewModelBase
     {
         private const string URL_GET_VEHICLES = "http://aluracar.herokuapp.com";
-        public List<Vehicle> Vehicles { get; set; }
-
         private Vehicle _selectedVehicle;
+        public ObservableCollection<Vehicle> Vehicles { get; set; }
+               
         public Vehicle SelectedVehicle
         {
             get { return _selectedVehicle; }
@@ -28,15 +27,30 @@ namespace TestDrive.ViewModels
             }
         }
 
+        private bool isItCharging;
+
+        public bool Wait
+        {
+            get { return isItCharging; }
+            set
+            {
+                isItCharging = value;
+                OnPropertyChanged();
+
+            }
+        }
+
         public ListingViewModel()
         {
-            Vehicles = new List<Vehicle>();
+            Vehicles = new ObservableCollection<Vehicle>();
         }
 
         public async Task getVehicles()
         {
+            Wait = true;
             var result = await new HttpClient().GetStringAsync(URL_GET_VEHICLES);
             var JsonVehicles = JsonConvert.DeserializeObject<JsonVeiculo[]>(result);
+            Wait = false;
             foreach (var vehicle in JsonVehicles)
             {
                 this.Vehicles.Add(new Vehicle(vehicle.nome, vehicle.preco));

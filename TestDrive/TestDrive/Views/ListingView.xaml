@@ -10,8 +10,12 @@
         <vm:ListingViewModel/>
     </ContentPage.BindingContext>
 -->
-    <ListView x:Name="listviewVehicles" ItemsSource="{Binding Vehicles}" Margin="25"
-              SelectedItem="{Binding SelectedVehicle}">
+    <StackLayout Margin="25">
+        <ActivityIndicator IsRunning="{Binding Wait}" IsVisible="{Binding Wait}">
+
+        </ActivityIndicator> 
+    
+    <ListView x:Name="listviewVehicles" ItemsSource="{Binding Vehicles}" SelectedItem="{Binding SelectedVehicle}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -27,5 +31,5 @@
         </ListView.ItemTemplate>
 
     </ListView>
-
+    </StackLayout>
 </ContentPage>

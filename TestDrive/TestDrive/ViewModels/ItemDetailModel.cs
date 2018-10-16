@@ -5,12 +5,11 @@ using Xamarin.Forms;
 
 namespace TestDrive.ViewModels
 {
-    public class ItemDetailModel : INotifyPropertyChanged
+    public class ItemDetailModel : ViewModelBase
     {
         public ICommand NextCommand { get; set; }
         public Vehicle Vehicle { get; set; }
-        public event PropertyChangedEventHandler PropertyChanged;
- 
+       
         public string Text_Abs_Break { get { return string.Format("ABS BREAK - R$ {0}", Vehicle.ABS_BREAK); } }
         public string Text_Air_Conditioning { get { return string.Format("AIR CONDITIONING - R$ {0}", Vehicle.AIR_CONDITIONING); } }
         public string Text_Mp3_Player { get { return string.Format("MP3 PLAYER - R$ {0}", Vehicle.MP3_PLAYER); } }
@@ -68,16 +67,6 @@ namespace TestDrive.ViewModels
                                                                                   );
             }
         }
-
-
-
-        public void OnPropertyChanged(string target = "")
-        {
-            //The opperator '?' verify whether the PropertyChanged is null.
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(target));
-        }
-
-
 
     }
 }
