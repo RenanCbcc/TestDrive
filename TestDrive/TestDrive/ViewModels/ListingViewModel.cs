@@ -22,7 +22,7 @@ namespace TestDrive.ViewModels
                 _selectedVehicle = value;
                 if (_selectedVehicle != null)
                 {
-                    MessagingCenter.Send(_selectedVehicle, "SelectedVehicle");
+                    MessagingCenter.Send<Vehicle>(_selectedVehicle, "SelectedVehicle");
                 }
             }
         }

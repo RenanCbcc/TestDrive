@@ -1,4 +1,5 @@
 ﻿using System;
+using TestDrive.Models;
 using TestDrive.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,13 +12,14 @@ namespace TestDrive
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new ListingView());
+            //I don't want my loginview as my root page.
+            //MainPage = new NavigationPage(new LoginView());
+            MainPage = new LoginView();
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            MessagingCenter.Subscribe<User>(this, "SuccessfulLogin", (message) => { MainPage = new NavigationPage(new LoginView()); });
         }
 
         protected override void OnSleep()

@@ -9,7 +9,7 @@ namespace TestDrive.ViewModels
     {
         public ICommand NextCommand { get; set; }
         public Vehicle Vehicle { get; set; }
-       
+
         public string Text_Abs_Break { get { return string.Format("ABS BREAK - R$ {0}", Vehicle.ABS_BREAK); } }
         public string Text_Air_Conditioning { get { return string.Format("AIR CONDITIONING - R$ {0}", Vehicle.AIR_CONDITIONING); } }
         public string Text_Mp3_Player { get { return string.Format("MP3 PLAYER - R$ {0}", Vehicle.MP3_PLAYER); } }
@@ -18,10 +18,10 @@ namespace TestDrive.ViewModels
         public ItemDetailModel(Vehicle vehicle)
         {
             Vehicle = vehicle;
-            NextCommand = new Command(() => MessagingCenter.Send<Vehicle>(vehicle, "Next"));
+            NextCommand = new Command(() => { MessagingCenter.Send<Vehicle>(vehicle, "Next"); });
         }
 
-        
+
 
         public bool HasVehicleAbsBreak
         {
