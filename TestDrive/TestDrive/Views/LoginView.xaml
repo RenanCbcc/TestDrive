@@ -10,8 +10,9 @@
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Margin="64">
+            <ActivityIndicator IsRunning="{Binding Wait}" IsVisible="{Binding Wait}"/>
             <Image Source="pic.png"></Image>
-            <Entry Placeholder="user" Text="{Binding UserName}"></Entry>
+            <Entry Placeholder="email" Keyboard="Email" Text="{Binding UserName}"></Entry>
             <Entry Placeholder="password" Text="{Binding Passsword}" IsPassword="True"></Entry>
             <Button Text="Login" Command="{Binding LoginCommand}" ></Button>
         </StackLayout>
