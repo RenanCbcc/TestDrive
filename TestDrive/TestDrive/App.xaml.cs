@@ -19,7 +19,7 @@ namespace TestDrive
 
         protected override void OnStart()
         {
-            MessagingCenter.Subscribe<User>(this, "SuccessfulLogin", (message) => { MainPage = new NavigationPage(new LoginView()); });
+            MessagingCenter.Subscribe<User>(this, "SuccessfulLogin", (message) => { MainPage = new NavigationPage(new ListingView());});
         }
 
         protected override void OnSleep()
