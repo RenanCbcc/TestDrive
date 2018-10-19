@@ -80,7 +80,7 @@ namespace TestDrive.ViewModels
                 if (result.IsSuccessStatusCode)
                 {
                     var data = await result.Content.ReadAsStringAsync();
-                    var resultofLogin = JsonConvert.DeserializeObject<ResultOfLogin>(data);
+                    var resultofLogin = JsonConvert.DeserializeObject<ResultOfLogin>(data);                      
                     MessagingCenter.Send<User>(resultofLogin.usuario, "SuccessfulLogin");
                 }
                 else

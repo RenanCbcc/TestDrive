@@ -21,7 +21,7 @@ namespace TestDrive.ViewModels
         public bool IsItEditing
         {
             get { return isItEditing; }
-            set {
+            private set {
                 isItEditing = value;
                 OnPropertyChanged();
             }
@@ -37,6 +37,7 @@ namespace TestDrive.ViewModels
 
             SavePerfilCommand = new Command(() => 
             {
+                isItEditing = false;
                 MessagingCenter.Send<User>(_user, "SuccessfulSaveUser");
             });
 

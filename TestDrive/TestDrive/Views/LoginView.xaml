@@ -15,6 +15,6 @@
             <Entry Placeholder="email" Keyboard="Email" Text="{Binding UserName}"></Entry>
             <Entry Placeholder="password" Text="{Binding Passsword}" IsPassword="True"></Entry>
             <Button Text="Login" Command="{Binding LoginCommand}"></Button>
-        </StackLayout>
+        </StackLayout>        
     </ContentPage.Content>
 </ContentPage>

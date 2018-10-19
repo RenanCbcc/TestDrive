@@ -32,7 +32,7 @@ namespace TestDrive.Views
             }
             );
 
-            MessagingCenter.Subscribe<Scheduling>(this, "Successful Scheduling", (message) =>
+            MessagingCenter.Subscribe<Scheduling>(this, "SuccessfulScheduling", (message) =>
             {
                 DisplayAlert("Scheduling", string.Format(
                    @"Vehivle: {0}
@@ -49,7 +49,7 @@ namespace TestDrive.Views
                    message.SchedulingTime), "OK");
             });
             
-            MessagingCenter.Subscribe<ArgumentException>(this, "Fail Scheduling", (message) =>
+            MessagingCenter.Subscribe<ArgumentException>(this, "FailScheduling", (message) =>
             {
                 DisplayAlert("Error", "It was not possible to schedule you test drive. Verify you information and attemp again later", "Ok");
             });
@@ -60,8 +60,8 @@ namespace TestDrive.Views
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<Scheduling>(this, "Scheduling");
-            MessagingCenter.Unsubscribe<Scheduling>(this, "Successful Scheduling");
-            MessagingCenter.Unsubscribe<ArgumentException>(this, "Fail Scheduling");
+            MessagingCenter.Unsubscribe<Scheduling>(this, "SuccessfulScheduling");
+            MessagingCenter.Unsubscribe<ArgumentException>(this, "FailScheduling");
         }
     }
 }

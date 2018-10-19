@@ -2,7 +2,13 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestDrive.Views.MasterView"
+            xmlns:converters="clr-namespace:TestDrive.Converters"
              Title="Perfil">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <converters:VegativeConverters x:Key="negative" />
+        </ResourceDictionary>
+    </TabbedPage.Resources>
     <TabbedPage.Children>
         <ContentPage Title="User">
             <Frame OutlineColor="Silver" Margin="15" VerticalOptions="CenterAndExpand">
@@ -28,8 +34,8 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
-                    <Button Text="Save" Command="{Binding SavePerfilCommand}"/>
-                    <Button Text="Edit" Command="{Binding SaveEditedCommand}"/>
+                    <Button Text="Save" Command="{Binding SavePerfilCommand}" IsVisible="{Binding IsItEditing}"/>
+                    <Button Text="Edit" Command="{Binding SaveEditedCommand}" IsEnabled="{Binding IsItEditing,Converter={StaticResource Key=negative}}" />
                 </StackLayout>
             </Frame>
         </ContentPage>
