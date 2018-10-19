@@ -6,18 +6,33 @@
     <TabbedPage.Children>
         <ContentPage Title="User">
             <Frame OutlineColor="Silver" Margin="15" VerticalOptions="CenterAndExpand">
-
                 <StackLayout VerticalOptions="Center" 
                 HorizontalOptions="Center">
                     <Label Text="{Binding Name}"/>
                     <Label Text="{Binding Email}"/>
+                    <Button  Text="Perfil" Command="{Binding EditPerfilCommand}"/>
                 </StackLayout>
             </Frame>
         </ContentPage>
 
-        <ContentPage Title="Editi">
-            
+        <ContentPage Title="Edit">
+            <Frame OutlineColor="Silver" Margin="15" VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <TableView>
+                        <TableRoot>
+                            <TableSection Title="Personal data">
+                                <EntryCell Placeholder="Nome" Text="{Binding Nome}" IsEnabled="{Binding IsItEditing}"/>
+                                <EntryCell Placeholder="Data de Nascimento" Text="{Binding DataNascimento}" IsEnabled="{Binding IsItEditing}"/>
+                                <EntryCell Placeholder="Telefone" Text="{Binding Telefone}" IsEnabled="{Binding IsItEditing}"/>
+                                <EntryCell Placeholder="E-mail" Text="{Binding DataNascimento}" IsEnabled="{Binding IsItEditing}"/>
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                    <Button Text="Save" Command="{Binding SavePerfilCommand}"/>
+                    <Button Text="Edit" Command="{Binding SaveEditedCommand}"/>
+                </StackLayout>
+            </Frame>
         </ContentPage>
     </TabbedPage.Children>
-    
+
 </TabbedPage>

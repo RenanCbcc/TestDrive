@@ -9,9 +9,9 @@
             <TableView>
                 <TableRoot>
                     <TableSection Title="Your informations">
-                        <EntryCell Label="Name:" Text="{Binding Scheduling.Name}"/>
-                        <EntryCell Label="Telephone:" Keyboard="Telephone" Text="{Binding Scheduling.Telephone}"/>
-                        <EntryCell Label="E-mail:" Keyboard="Email" Text="{Binding Scheduling.Email}"/>
+                        <EntryCell Placeholder="Name" Text="{Binding Scheduling.Name}"/>
+                        <EntryCell Placeholder="Telephone:" Keyboard="Telephone" Text="{Binding Scheduling.Telephone}"/>
+                        <EntryCell Placeholder="E-mail:" Keyboard="Email" Text="{Binding Scheduling.Email}"/>
                     </TableSection>
                     <TableSection Title="Scheduling">
                         <ViewCell>

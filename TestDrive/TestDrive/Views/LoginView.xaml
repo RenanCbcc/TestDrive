@@ -14,7 +14,7 @@
             <Image Source="pic.png"></Image>
             <Entry Placeholder="email" Keyboard="Email" Text="{Binding UserName}"></Entry>
             <Entry Placeholder="password" Text="{Binding Passsword}" IsPassword="True"></Entry>
-            <Button Text="Login" Command="{Binding LoginCommand}" ></Button>
+            <Button Text="Login" Command="{Binding LoginCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

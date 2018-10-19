@@ -11,7 +11,7 @@ namespace TestDrive.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        public ICommand LoginCommand { get; set; }
+        public ICommand LoginCommand { get; private set; }
         private string _username;
         public string UserName
         {
@@ -34,13 +34,13 @@ namespace TestDrive.ViewModels
             }
         }
 
-        private bool isItLoging;
+        private bool _isItLoging;
         public bool Loging
         {
-            get { return isItLoging; }
+            get { return _isItLoging; }
             set
             {
-                isItLoging = value;
+                _isItLoging = value;
                 OnPropertyChanged();
 
             }
