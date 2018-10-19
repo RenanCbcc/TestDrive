@@ -6,15 +6,15 @@ namespace TestDrive.Models
 {
     public class User
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Telephone { get; set; }
-        public int Id { get; set; }
-        
-        public User(string _username, string _password)
-        {
-            UserName = _username;
-            Password = _password;
-        }
+        public int id { get; set; }
+        public string nome { get; set; }
+        public string email { get; set; }
+        public string dataNascimento { get; set; }
+        public string telefone { get; set; }
+    }
+
+    public class ResultOfLogin
+    {
+        public User usuario { get; set; }
     }
 }

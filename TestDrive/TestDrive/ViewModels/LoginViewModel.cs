@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using TestDrive.Models;
 using Xamarin.Forms;
@@ -55,34 +57,39 @@ namespace TestDrive.ViewModels
             );
         }
 
-        private async System.Threading.Tasks.Task login()
+        private async Task login()
         {
-            try
+            using (var client = new HttpClient())
             {
-                using (var client = new HttpClient())
+                HttpResponseMessage result = null;
+                var content = new FormUrlEncodedContent(new[]
                 {
-                    var content = new FormUrlEncodedContent(new[]
-                    {
                         new KeyValuePair<string,string>("email",_username),
                         new KeyValuePair<string,string>("senha",_password)
                     });
 
-                    var result = await client.PostAsync("https://aluracar.herokuapp.com/login", content);
-                    if (result.IsSuccessStatusCode)
-                    {
-                        MessagingCenter.Send<User>(new User(_username, _password), "SuccessfulLogin");
-                    }
-                    else
-                    {
-                        MessagingCenter.Send<LoginException>(new LoginException("Login ou senha incorretos"), "FailLogin");
-                    }
-
+                try
+                {
+                    result = await client.PostAsync("https://aluracar.herokuapp.com/login", content);
                 }
+                catch
+                {
+                    MessagingCenter.Send<LoginException>(new LoginException("Ocorreu um erro durante a conexão com o servidor."), "FailLogin");
+                }
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var data = await result.Content.ReadAsStringAsync();
+                    var resultofLogin = JsonConvert.DeserializeObject<ResultOfLogin>(data);
+                    MessagingCenter.Send<User>(resultofLogin.usuario, "SuccessfulLogin");
+                }
+                else
+                {
+                    MessagingCenter.Send<LoginException>(new LoginException("Login ou senha incorretos"), "FailLogin");
+                }
+
             }
-            catch 
-            {
-                MessagingCenter.Send<LoginException>(new LoginException("Ocorreu um erro durante a conexão com o servidor."), "FailLogin");
-            }
+
         }
     }
 
