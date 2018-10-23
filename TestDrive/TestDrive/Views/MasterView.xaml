@@ -14,6 +14,7 @@
             <Frame OutlineColor="Silver" Margin="15" VerticalOptions="CenterAndExpand">
                 <StackLayout VerticalOptions="Center" 
                 HorizontalOptions="Center">
+                    <Image Source="user.png"/>                    
                     <Label Text="{Binding Name}"/>
                     <Label Text="{Binding Email}"/>
                     <Button  Text="Perfil" Command="{Binding EditPerfilCommand}"/>
@@ -24,6 +25,8 @@
         <ContentPage Title="Edit">
             <Frame OutlineColor="Silver" Margin="15" VerticalOptions="CenterAndExpand">
                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="user.png"/>
+                    <Button Text="Take phone" Command="{Binding TakePhotoCommand}"/>
                     <TableView>
                         <TableRoot>
                             <TableSection Title="Personal data">

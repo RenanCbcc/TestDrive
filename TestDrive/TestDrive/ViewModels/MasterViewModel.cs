@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using TestDrive.Media;
 using TestDrive.Models;
 using Xamarin.Forms;
 
@@ -15,9 +16,11 @@ namespace TestDrive.ViewModels
         public ICommand EditPerfilCommand { get; private set; }
         public ICommand SavePerfilCommand { get; private set; }
         public ICommand SaveEditedCommand { get; private set; }
+        public ICommand TakePhotoCommand { get; private set; }
+        private ImageSource Photo = "user.png";
+
 
         private bool isItEditing;
-
         public bool IsItEditing
         {
             get { return isItEditing; }
@@ -44,6 +47,12 @@ namespace TestDrive.ViewModels
             SaveEditedCommand = new Command(() => 
             {
                 isItEditing = true;
+            });
+
+            TakePhotoCommand = new Command(() => 
+            {
+                //Get the instance that implements IPhotographable. However, the instance (MainActivity) must be already registred.
+                DependencyService.Get<IPhotographable>().TackPhotography();
             });
         }
                      
