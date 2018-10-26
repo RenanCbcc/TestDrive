@@ -1,11 +1,12 @@
-﻿using System.Windows.Input;
+﻿using System.IO;
+using System.Windows.Input;
 using TestDrive.Media;
 using TestDrive.Models;
 using Xamarin.Forms;
 
 namespace TestDrive.ViewModels
 {
-    public class MasterViewModel: ViewModelBase
+    public class MasterViewModel : ViewModelBase
     {
         private readonly User _user;
         public string Name { get { return _user.nome; } set { _user.nome = value; } }
@@ -17,14 +18,16 @@ namespace TestDrive.ViewModels
         public ICommand SavePerfilCommand { get; private set; }
         public ICommand SaveEditedCommand { get; private set; }
         public ICommand TakePhotoCommand { get; private set; }
-        private ImageSource Photo = "user.png";
+        private ImageSource perfilPhoto = "user.png";
 
+        public ImageSource PerfilPhoto { get { return perfilPhoto; } set { perfilPhoto = value; OnPropertyChanged(); } }
 
         private bool isItEditing;
         public bool IsItEditing
         {
             get { return isItEditing; }
-            private set {
+            private set
+            {
                 isItEditing = value;
                 OnPropertyChanged();
             }
@@ -33,28 +36,36 @@ namespace TestDrive.ViewModels
         public MasterViewModel(User user)
         {
             this._user = user;
-            EditPerfilCommand = new Command(() => 
+            EditPerfilCommand = new Command(() =>
             {
                 MessagingCenter.Send<User>(_user, "EditPerfil");
             });
 
-            SavePerfilCommand = new Command(() => 
+            SavePerfilCommand = new Command(() =>
             {
                 isItEditing = false;
                 MessagingCenter.Send<User>(_user, "SuccessfulSaveUser");
             });
 
-            SaveEditedCommand = new Command(() => 
+            SaveEditedCommand = new Command(() =>
             {
                 isItEditing = true;
             });
 
-            TakePhotoCommand = new Command(() => 
+            TakePhotoCommand = new Command(() =>
             {
                 //Get the instance that implements IPhotographable. However, the instance (MainActivity) must be already registred.
                 DependencyService.Get<IPhotographable>().TackPhotography();
             });
+
+
+            MessagingCenter.Subscribe<byte[]>(this, "takedPhoto",
+                (bytes) =>
+             {
+                 perfilPhoto = ImageSource.FromStream(
+                     () => new MemoryStream(bytes));
+             });
         }
-                     
+
     }
 }

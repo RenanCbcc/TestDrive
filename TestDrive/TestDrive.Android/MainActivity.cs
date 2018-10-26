@@ -20,11 +20,16 @@ namespace TestDrive.Droid
         public void TackPhotography()
         {
             Intent intent = new Intent(MediaStore.ActionImageCapture);
-            
-            imageFile = takesFileImage();
 
-            intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(imageFile));
-            Activity activity = Android.App.Application.Context as Activity;
+            imageFile = takesFileImage();
+            intent.PutExtra(MediaStore.ExtraOutput,
+                Android.Net.Uri.FromFile(imageFile));
+
+
+            //var activity = Android.App.Application.Context as Activity;
+            Activity activity = Forms.Context as Activity;
+            //TODO
+            //Android.OS.FileUriExposedException
             activity.StartActivityForResult(intent, 0);
         }
 
@@ -32,7 +37,8 @@ namespace TestDrive.Droid
         {
             Java.IO.File imageFile;
             Java.IO.File directory = new Java.IO.File(
-                Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures),"images");
+                Android.OS.Environment.GetExternalStoragePublicDirectory(
+                    Android.OS.Environment.DirectoryPictures), "Imagens");
 
             if (!directory.Exists())
             {
@@ -56,7 +62,18 @@ namespace TestDrive.Droid
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            MessagingCenter.Send<Java.IO.File>(imageFile, "takePgoto");
+            if (resultCode == Result.Ok)
+            {
+                byte[] bytes;
+                using (var stram = new Java.IO.FileInputStream(imageFile))
+                {
+                    bytes = new byte[imageFile.Length()];
+                    stram.Read(bytes);
+                }
+                MessagingCenter.Send<byte[]>(bytes, "takedPhoto");
+            }
+
+
         }
     }
 }

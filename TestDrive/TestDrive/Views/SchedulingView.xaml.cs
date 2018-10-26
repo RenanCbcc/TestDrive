@@ -1,5 +1,6 @@
 ﻿using System;
 using TestDrive.models;
+using TestDrive.Models;
 using TestDrive.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,10 +12,10 @@ namespace TestDrive.Views
     {
         public SchedulinViewModel ViewModel { get; set; }
 
-        public SchedulingView(Vehicle vehicle)
+        public SchedulingView(Vehicle vehicle,User user)
         {
             InitializeComponent();
-            ViewModel = new SchedulinViewModel(vehicle);
+            ViewModel = new SchedulinViewModel(vehicle, user);
             BindingContext = ViewModel;
         }
 
@@ -41,7 +42,7 @@ namespace TestDrive.Views
                     E-mail: {3}
                     Scheduling Date: {4}
                     Scheduling Time:{5}",
-                   message.Vehicle.Name,
+                   message.Model,
                    message.Name,
                    message.Telephone,
                    message.Email,
