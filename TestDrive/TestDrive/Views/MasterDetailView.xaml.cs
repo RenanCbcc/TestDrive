@@ -10,8 +10,8 @@ namespace TestDrive.Views
         public MasterDetailView(User user)
         {
             InitializeComponent();
-            this.Master = new MasterView(user);
-
+            Master = new MasterView(user);
+            Detail = new NavigationPage(new ListingView(user));
         }
     }
 }

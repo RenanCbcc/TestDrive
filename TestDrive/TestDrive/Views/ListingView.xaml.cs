@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using TestDrive.models;
 using TestDrive.Models;
 using TestDrive.ViewModels;
@@ -19,25 +16,47 @@ namespace TestDrive.Views
         {
             InitializeComponent();
             _user = user;
-            BindingContext = new ListingViewModel();
+            ViewModel = new ListingViewModel();
+            BindingContext = ViewModel;
         }
+
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Subscribe<Vehicle>(this, "SelectedVehicle", (vehicle) =>
+            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+            if (status != PermissionStatus.Granted)
             {
-                Navigation.PushAsync(new ItemDetailView(vehicle, _user));
+                if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage))
+                {
+                    await DisplayAlert("Acesso a Armazenamento Externo", "É preciso dar permissão para Armazenamento Externo", "OK");
+                }
+
+                var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                status = results[Permission.Storage];
             }
-            );
-            await ViewModel.getVehicles();
-        }
+
+            if (status == PermissionStatus.Granted)
+            {
+                //var conexao = new BancoDadosDB();
+                await ViewModel.getVehicles();
+                MessagingCenter.Subscribe<Vehicle>(this, "SelectedVehicle", (vehicle) =>
+                {
+                    Navigation.PushAsync(new ItemDetailView(vehicle, _user));
+                });
+            }
+            else if (status != PermissionStatus.Unknown)
+            {
+                await DisplayAlert("Armazenamento Externo Negado", "Não é possível continuar", "OK");
+            }
+            
+
+                               }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<Vehicle>(this, "SelectedVehicle");
-
         }
     }
 }

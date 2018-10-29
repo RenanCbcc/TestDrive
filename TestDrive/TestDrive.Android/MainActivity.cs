@@ -7,6 +7,8 @@ using Android.Provider;
 using TestDrive.Droid;
 using TestDrive.Media;
 using Xamarin.Forms;
+using Plugin.Permissions;
+using Android.Runtime;
 
 // Registring the class.
 [assembly: Xamarin.Forms.Dependency(typeof(MainActivity))]
@@ -28,8 +30,7 @@ namespace TestDrive.Droid
 
             //var activity = Android.App.Application.Context as Activity;
             Activity activity = Forms.Context as Activity;
-            //TODO
-            //Android.OS.FileUriExposedException
+                       
             activity.StartActivityForResult(intent, 0);
         }
 
@@ -49,13 +50,15 @@ namespace TestDrive.Droid
             return imageFile;
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            base.OnCreate(bundle);
+
+            global::Xamarin.Forms.Forms.Init(this, bundle);
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
             LoadApplication(new App());
         }
 
@@ -73,7 +76,12 @@ namespace TestDrive.Droid
                 MessagingCenter.Send<byte[]>(bytes, "takedPhoto");
             }
 
+        }
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
