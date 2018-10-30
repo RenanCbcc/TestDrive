@@ -33,9 +33,9 @@ namespace TestDrive.Views
             }
             );
 
-            MessagingCenter.Subscribe<Scheduling>(this, "SuccessfulScheduling", (message) =>
+            MessagingCenter.Subscribe<Scheduling>(this, "SuccessfulScheduling", async (message) =>
             {
-                DisplayAlert("Scheduling", string.Format(
+               await DisplayAlert("Scheduling", string.Format(
                    @"Vehivle: {0}
                     Name: {1}
                     Phone: {2}
@@ -48,11 +48,14 @@ namespace TestDrive.Views
                    message.Email,
                    message.SchedulingDate.ToString("dd/MM/yyy"),
                    message.SchedulingTime), "OK");
+                //After a succesful scheduling, a want to come back to listing view.
+                await Navigation.PopToRootAsync();
             });
             
-            MessagingCenter.Subscribe<ArgumentException>(this, "FailScheduling", (message) =>
+            MessagingCenter.Subscribe<ArgumentException>(this, "FailScheduling", async (message) =>
             {
-                DisplayAlert("Error", "It was not possible to schedule you test drive. Verify you information and attemp again later", "Ok");
+                await DisplayAlert("Error", "It was not possible to schedule you test drive. Verify you information and attemp again later", "Ok");
+                await Navigation.PopToRootAsync();
             });
             
         }

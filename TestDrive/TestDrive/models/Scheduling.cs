@@ -1,9 +1,12 @@
-﻿using System;
+﻿using SQLite;
+using System;
 
 namespace TestDrive.models
 {
     public class Scheduling
     {
+        [PrimaryKey,AutoIncrement]
+        public int ID { get; set; }
         public string Model { get; set; }
         public decimal Price { get; set; }
         public string Name { get; set; }
