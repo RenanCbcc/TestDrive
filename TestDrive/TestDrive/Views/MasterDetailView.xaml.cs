@@ -13,5 +13,17 @@ namespace TestDrive.Views
             Master = new MasterView(user);
             Detail = new NavigationPage(new ListingView(user));
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MessagingCenter.Subscribe<User>(this, "MySchedulings", (user) => 
+            {
+                this.Detail = new SchedulingsListView();
+                ///Hides the MasterView immediately after the detail page is chosen.
+                IsPresented = false;
+            });
+        }
     }
+       
 }

@@ -18,6 +18,7 @@ namespace TestDrive.ViewModels
         public ICommand SavePerfilCommand { get; private set; }
         public ICommand SaveEditedCommand { get; private set; }
         public ICommand TakePhotoCommand { get; private set; }
+        public ICommand SeeSchedulingsCommand { get; private set; }
         private ImageSource perfilPhoto = "user.png";
 
         public ImageSource PerfilPhoto { get { return perfilPhoto; } set { perfilPhoto = value; OnPropertyChanged(); } }
@@ -58,6 +59,10 @@ namespace TestDrive.ViewModels
                 DependencyService.Get<IPhotographable>().TackPhotography();
             });
 
+            SeeSchedulingsCommand = new Command(() => 
+            {
+                MessagingCenter.Send<User>(user, "MySchedulings");
+            });
 
             MessagingCenter.Subscribe<byte[]>(this, "takedPhoto",
                 (bytes) =>
@@ -65,6 +70,8 @@ namespace TestDrive.ViewModels
                  perfilPhoto = ImageSource.FromStream(
                      () => new MemoryStream(bytes));
              });
+
+
         }
 
     }

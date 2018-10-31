@@ -18,6 +18,7 @@
                     <Label Text="{Binding Name}"/>
                     <Label Text="{Binding Email}"/>
                     <Button  Text="Perfil" Command="{Binding EditPerfilCommand}"/>
+                    <Button  Text="Scheduling" Command="{Binding SeeSchedulingsCommand}"/>
                 </StackLayout>
             </Frame>
         </ContentPage>
