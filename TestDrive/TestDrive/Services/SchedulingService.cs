@@ -45,7 +45,7 @@ namespace TestDrive.Services
             else
             {
                 scheduling.IsItScheduled = false;
-                MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FailScheduling");
+                MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FailedScheduling");
             }
             //Saves the scheduling at database anyway.
             SaveSchedulingDB(scheduling);

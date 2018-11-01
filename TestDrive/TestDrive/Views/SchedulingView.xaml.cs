@@ -40,7 +40,7 @@ namespace TestDrive.Views
                 await Navigation.PopToRootAsync();
             });
             
-            MessagingCenter.Subscribe<ArgumentException>(this, "FailScheduling", async (message) =>
+            MessagingCenter.Subscribe<ArgumentException>(this, "FailedScheduling", async (message) =>
             {
                 await DisplayAlert("Error", "It was not possible to schedule you test drive. Verify you information and attemp again later", "Ok");
                 await Navigation.PopToRootAsync();
@@ -53,7 +53,7 @@ namespace TestDrive.Views
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<Scheduling>(this, "SaveScheduling");
             MessagingCenter.Unsubscribe<Scheduling>(this, "SuccessfulScheduling");
-            MessagingCenter.Unsubscribe<ArgumentException>(this, "FailScheduling");
+            MessagingCenter.Unsubscribe<ArgumentException>(this, "FailedScheduling");
         }
     }
 }

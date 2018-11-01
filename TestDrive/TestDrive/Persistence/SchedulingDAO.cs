@@ -22,7 +22,15 @@ namespace TestDrive.Persistence
 
         public void save(Scheduling scheduling)
         {
-            _connection.Insert(scheduling);
+            if (_connection.Find<Scheduling>(scheduling.ID) == null)
+            {
+                _connection.Insert(scheduling);
+            }
+            else
+            {
+                _connection.Update(scheduling);
+            }
         }
+
     }
 }

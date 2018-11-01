@@ -37,12 +37,24 @@ namespace TestDrive.Views
                     }
                 }
             });
+
+            MessagingCenter.Subscribe<Scheduling>(this, "SuccessfulScheduling", async (scheduling) =>
+             {
+                 await DisplayAlert("Resend", "Resending succesfuly!", "Ok");
+             });
+
+            MessagingCenter.Subscribe<Scheduling>(this, "FailedScheduling", async (scheduling) =>
+            {
+                await DisplayAlert("Resend", "Resending failed!", "Ok");
+            });
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<Scheduling>(this, "SaveSelectedScheduling");
+            MessagingCenter.Unsubscribe<Scheduling>(this, "FailedScheduling");
+            MessagingCenter.Unsubscribe<Scheduling>(this, "SuccessfulScheduling");
         }
     }
 }
