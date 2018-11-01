@@ -6,7 +6,7 @@
              Title="Perfil">
     <TabbedPage.Resources>
         <ResourceDictionary>
-            <converters:VegativeConverters x:Key="negative" />
+            <converters:NegativeConverter x:Key="negative" />
         </ResourceDictionary>
     </TabbedPage.Resources>
     <TabbedPage.Children>

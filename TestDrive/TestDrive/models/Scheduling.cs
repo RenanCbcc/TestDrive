@@ -12,8 +12,10 @@ namespace TestDrive.models
         public string Name { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
+        public bool IsItScheduled { get; set; }
         public TimeSpan SchedulingTime { get; set; }
         public DateTime SchedulingDate { get; set; }
+        
 
         public string FormatedDate { get { return SchedulingDate.Add(SchedulingTime).ToString("dd/mm/yyyy HH:mm"); } }
 

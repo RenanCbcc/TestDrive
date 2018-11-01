@@ -35,19 +35,7 @@ namespace TestDrive.Views
 
             MessagingCenter.Subscribe<Scheduling>(this, "SuccessfulScheduling", async (message) =>
             {
-               await DisplayAlert("Scheduling", string.Format(
-                   @"Vehivle: {0}
-                    Name: {1}
-                    Phone: {2}
-                    E-mail: {3}
-                    Scheduling Date: {4}
-                    Scheduling Time:{5}",
-                   message.Model,
-                   message.Name,
-                   message.Telephone,
-                   message.Email,
-                   message.SchedulingDate.ToString("dd/MM/yyy"),
-                   message.SchedulingTime), "OK");
+               await DisplayAlert("Scheduling", "Scheduling saved successfuly", "OK");
                 //After a succesful scheduling, a want to come back to listing view.
                 await Navigation.PopToRootAsync();
             });

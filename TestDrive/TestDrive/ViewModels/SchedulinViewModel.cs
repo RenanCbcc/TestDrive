@@ -49,6 +49,30 @@ namespace TestDrive.ViewModels
             }
         }
 
+        public DateTime SchedulingDate
+        {
+            get
+            {
+                return Scheduling.SchedulingDate;
+            }
+            set
+            {
+                Scheduling.SchedulingDate = value;
+            }
+        }
+
+        public TimeSpan SchedulingTime
+        {
+            get
+            {
+                return Scheduling.SchedulingTime;
+            }
+            set
+            {
+                Scheduling.SchedulingTime = value;
+            }
+        }
+
         public SchedulinViewModel(Vehicle vehicle,User user)
         {
             Scheduling = new Scheduling(user.nome, user.telefone, user.email, vehicle.Name, vehicle.Price);
@@ -89,16 +113,18 @@ namespace TestDrive.ViewModels
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await new HttpClient().PostAsync(URL_POST_SCHEDULING, content);
 
-            saveSchedulingDB();
-
             if (response.IsSuccessStatusCode)
             {
+                Scheduling.IsItScheduled = true;
                 MessagingCenter.Send<Scheduling>(Scheduling, "SuccessfulScheduling");
             }
             else
             {
+                Scheduling.IsItScheduled = false;
                 MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FailScheduling");
             }
+            //Saves the scheduling at database anyway.
+            saveSchedulingDB();
         }
 
         private void saveSchedulingDB()
@@ -106,7 +132,7 @@ namespace TestDrive.ViewModels
             using (var connection = DependencyService.Get<IStorageble>().getConnection())
             {
                 SchedulingDAO dao = new SchedulingDAO(connection);
-                dao.save(new Scheduling(Name, Telephone, Email,Scheduling.Model,Scheduling.Price));
+                dao.save(this.Scheduling);
             }
         }
     }

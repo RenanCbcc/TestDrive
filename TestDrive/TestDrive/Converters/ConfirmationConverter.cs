@@ -6,16 +6,17 @@ using Xamarin.Forms;
 
 namespace TestDrive.Converters
 {
-    class VegativeConverters : IValueConverter
+    class ConfirmationConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !(bool)value;
+            bool confirmed = (bool)value;
+            if (confirmed) { return Color.Black; } else { return Color.Red; }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !(bool)value;
+            throw new NotImplementedException();
         }
     }
 }

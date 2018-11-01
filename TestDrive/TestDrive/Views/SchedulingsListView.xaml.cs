@@ -16,8 +16,8 @@ namespace TestDrive.Views
 		public SchedulingsListView ()
 		{
 			InitializeComponent ();
-            LsitViewSchedulings.ItemsSource = new List<Scheduling>();
-           // BindingContext = new SchedulingsListViewModel();
+           // LsitViewSchedulings.ItemsSource = new List<Scheduling>();
+           BindingContext = new SchedulingsListViewModel();
         }
 	}
 }

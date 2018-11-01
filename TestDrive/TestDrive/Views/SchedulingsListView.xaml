@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TestDrive.Views.SchedulingsListView">
+             x:Class="TestDrive.Views.SchedulingsListView"
+             Title="My Schedulings"
+             xmlns:converters="clr-namespace:TestDrive.Converters"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ConfirmationConverter x:Key="ConfirmationToColorCoverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="LsitViewSchedulings"  ItemsSource="{Binding List}">
@@ -10,9 +18,12 @@
                         <ViewCell>
                             <ViewCell.View>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding FormatedDate}" VerticalTextAlignment="Center" FontSize="20"/>
+                                    <Label Text="{Binding FormatedDate}" VerticalTextAlignment="Center" 
+                                           TextColor="{Binding IsItScheduled,Converter={StaticResource Key=ConfirmationToColorCoverter}}"/>
                                     <Label Text=" - " VerticalTextAlignment="Center"/>
-                                    <Label Text="{Binding Model}" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Model}" VerticalTextAlignment="Center" FontAttributes="Bold" 
+                                           TextColor="{Binding IsItScheduled,Converter={StaticResource Key=ConfirmationToColorCoverter}}"/>
+                                  
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>
