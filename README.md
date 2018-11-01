@@ -4,7 +4,7 @@ My first mobile application written in C#.
 * There is bug when the app is launched for the first time.
 * There is bug when I attempt to take a user picture with the camera.
 ### Screenshots:
-![GitHub Logo](TestDrive/TestDrive/Prints/Screenshot_1540558597.png){:height="36px" width="36px"}.
+![GitHub Logo](<img src="TestDrive/TestDrive/Prints/Screenshot_1540558597.png" alt="drawing" width="200"/>)
 ![GitHub Logo](TestDrive/TestDrive/Prints/Screenshot_1541085386.png =480x320)
 ![GitHub Logo](TestDrive/TestDrive/Prints/Screenshot_1541085415.png =480x320)
 ![GitHub Logo](TestDrive/TestDrive/Prints/Screenshot_1541085423.png =480x320)
