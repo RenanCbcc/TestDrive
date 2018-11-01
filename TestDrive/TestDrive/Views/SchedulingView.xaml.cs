@@ -22,11 +22,11 @@ namespace TestDrive.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Subscribe<Scheduling>(this, "Scheduling", async (message) =>
+            MessagingCenter.Subscribe<Scheduling>(this, "SaveScheduling", async (message) =>
             {
-                var confirm = await DisplayAlert("Save scheduling", "Do you want to send the scheduling?", "Yes", "No");
+                var response = await DisplayAlert("Save scheduling", "Do you want to send the scheduling?", "Yes", "No");
 
-                if (confirm)
+                if (response)
                 {
                     this.ViewModel.SaveScheduling();
                 }
@@ -51,7 +51,7 @@ namespace TestDrive.Views
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            MessagingCenter.Unsubscribe<Scheduling>(this, "Scheduling");
+            MessagingCenter.Unsubscribe<Scheduling>(this, "SaveScheduling");
             MessagingCenter.Unsubscribe<Scheduling>(this, "SuccessfulScheduling");
             MessagingCenter.Unsubscribe<ArgumentException>(this, "FailScheduling");
         }

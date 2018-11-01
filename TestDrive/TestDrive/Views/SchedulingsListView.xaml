@@ -12,7 +12,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="LsitViewSchedulings"  ItemsSource="{Binding List}">
+            <ListView SelectedItem="{Binding  SelectedScheduling}"  ItemsSource="{Binding List}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -23,7 +23,7 @@
                                     <Label Text=" - " VerticalTextAlignment="Center"/>
                                     <Label Text="{Binding Model}" VerticalTextAlignment="Center" FontAttributes="Bold" 
                                            TextColor="{Binding IsItScheduled,Converter={StaticResource Key=ConfirmationToColorCoverter}}"/>
-                                  
+
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>
