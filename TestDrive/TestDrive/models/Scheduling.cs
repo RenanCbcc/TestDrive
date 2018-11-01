@@ -13,7 +13,14 @@ namespace TestDrive.models
         public string Telephone { get; set; }
         public string Email { get; set; }
         public TimeSpan SchedulingTime { get; set; }
-        private DateTime _dateTime;
+        public DateTime SchedulingDate { get; set; }
+
+        public string FormatedDate { get { return SchedulingDate.Add(SchedulingTime).ToString("dd/mm/yyyy HH:mm"); } }
+
+        public Scheduling()
+        {
+            //Constructor need in SchedulingDAO -> _connection.Table<Scheduling>().ToList()
+        }
 
         public Scheduling(string name, string phone, string email, string modle, decimal price)
         {
@@ -22,11 +29,15 @@ namespace TestDrive.models
             Email = email;
             Model = modle;
             Price = price;
-            _dateTime = DateTime.Today;
+            SchedulingDate = DateTime.Today;
         }
 
-
-        public DateTime SchedulingDate { get { return _dateTime; } private set { _dateTime = value; } }
+        public Scheduling(string name, string phone, string email, string modle, decimal price, DateTime date,TimeSpan  hour)
+            :this(name,phone,email,modle,price)
+        {
+            SchedulingDate = date;
+            SchedulingTime = hour;
+        }      
 
     }
 }

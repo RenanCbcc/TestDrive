@@ -4,9 +4,21 @@
              x:Class="TestDrive.Views.SchedulingsListView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="LsitViewSchedulings"  ItemsSource="{Binding List}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding FormatedDate}" VerticalTextAlignment="Center" FontSize="20"/>
+                                    <Label Text=" - " VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Model}" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

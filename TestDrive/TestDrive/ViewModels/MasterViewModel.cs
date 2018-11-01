@@ -19,6 +19,7 @@ namespace TestDrive.ViewModels
         public ICommand SaveEditedCommand { get; private set; }
         public ICommand TakePhotoCommand { get; private set; }
         public ICommand SeeSchedulingsCommand { get; private set; }
+        public ICommand NewSchedulingCommand { get; private set; }
         private ImageSource perfilPhoto = "user.png";
 
         public ImageSource PerfilPhoto { get { return perfilPhoto; } set { perfilPhoto = value; OnPropertyChanged(); } }
@@ -71,7 +72,10 @@ namespace TestDrive.ViewModels
                      () => new MemoryStream(bytes));
              });
 
-
+            NewSchedulingCommand = new Command(() => 
+            {
+                MessagingCenter.Send<User>(user, "NewScheduling");
+            });
         }
 
     }
